@@ -124,7 +124,10 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222; }
+  color: #222;
+  min-width: 800px;
+}
+
 
 
 /* Typography
@@ -327,7 +330,7 @@ th,
 td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #E1E1E1; 
+  border-bottom: 1px solid #E1E1E1;
   white-space: nowrap; }
 th:first-child,
 td:first-child {

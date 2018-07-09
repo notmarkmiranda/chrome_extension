@@ -3,6 +3,10 @@
 
   "name": "Second Life Ticket Browser",
   "description": "This extension wraps api calls to JIRA for gathering status and metrics",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
   "version": "1.0",
   "options_page": "options.html",
   "browser_action": {

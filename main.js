@@ -76,32 +76,18 @@ function buildJQL(callback) {
 
 
 function createHTMLElementResult(response){
-
-//
-// Create HTML output to display the search results.
-// results.json in the "json_results" folder contains a sample of the API response
-// hint: you may run the application as well if you fix the bug.
-//
-  console.log(response.issues);
   var issues = response.issues.map(function(issue){
-    return `<p>
-            Ticket #<a href="${issue.self}" class="ticket-link">#${issue.id}</a>
-            - ${issue.fields.summary}
-            </p>`
+    return listItemHtml(issue)
   })
-  return issues.join('')
-  // return '<p>There may be results, but you must read the response and display them.</p>';
-
+  return `<ul>${issues.join('')}</ul>`
 }
 
-function createNewTab() {
-  chrome.browserAction.onClicked.addListener(function(activeTab){
-    var newURL = "http://www.youtube.com/watch?v=oHg5SJYRHA0";
-    chrome.tabs.create({ url: newURL });
-});
+function listItemHtml(issue) {
+  return `<li>
+            <a href="https://jira.secondlife.com/browse/${issue.key}" target="_blank">${issue.key}</a>
+            - ${issue.fields.summary}
+          </li>`
 }
-
-
 
 // utility
 function domify(str){
@@ -129,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("query").onclick = function(){
         // build query
         buildJQL(function(url) {
+          console.log(url);
           document.getElementById('status').innerHTML = 'Performing JIRA search for ' + url;
           document.getElementById('status').hidden = false;
           // perform the search
