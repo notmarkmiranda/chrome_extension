@@ -54,7 +54,6 @@ function make_request(url, responseType) {
 }
 
 
-
 function loadOptions(){
   chrome.storage.sync.get({
     project: 'Sunshine',
@@ -64,6 +63,7 @@ function loadOptions(){
     document.getElementById('user').value = items.user;
   });
 }
+
 function buildJQL(callback) {
   var callbackBase = "https://jira.secondlife.com/rest/api/2/search?jql=";
   var project = document.getElementById("project").value;
