@@ -84,10 +84,10 @@ function createHTMLElementResult(response){
 }
 
 function listItemHtml(issue) {
-  return `<li>
+  return `<li class="query-result">
             <img src="${issue.fields.status.iconUrl}" />
             <a href="https://jira.secondlife.com/browse/${issue.key}" target="_blank">${issue.key}</a>
-            - ${issue.fields.summary}
+            <div class="query-result-title">${issue.fields.summary}</div>
           </li>`
 }
 
@@ -112,26 +112,26 @@ document.addEventListener('DOMContentLoaded', function() {
     checkProjectExists().then(function() {
       //load saved options
       loadOptions();
-
+      var statusElement = document.getElementById('status')
       // query click handler
       document.getElementById("query").onclick = function(){
         // build query
         buildJQL(function(url) {
-          document.getElementById('status').innerHTML = 'Performing JIRA search for ' + url;
-          document.getElementById('status').hidden = false;
+          statusElement.innerHTML = 'Performing JIRA search for ' + url;
+          statusElement.hidden = false;
           // perform the search
           getQueryResults(url, function(return_val) {
             // render the results
-            document.getElementById('status').innerHTML = 'Query term: ' + url + '\n';
-            document.getElementById('status').hidden = false;
+            statusElement.innerHTML = 'Query term: ' + url + '\n';
+            statusElement.hidden = false;
 
             var jsonResultDiv = document.getElementById('query-result');
             jsonResultDiv.innerHTML = return_val;
             jsonResultDiv.hidden = false;
 
           }, function(errorMessage) {
-              document.getElementById('status').innerHTML = 'ERROR. ' + errorMessage;
-              document.getElementById('status').hidden = false;
+              statusElement.innerHTML = 'ERROR. ' + errorMessage;
+              statusElement.hidden = false;
           });
         });
       }
@@ -140,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("feed").onclick = function(){
         // get the xml feed
         getJIRAFeed(function(url, xmlDoc) {
-          document.getElementById('status').innerHTML = 'Activity query: ' + url + '\n';
-          document.getElementById('status').hidden = false;
+          statusElement.innerHTML = 'Activity query: ' + url + '\n';
+          statusElement.hidden = false;
 
           // render result
           var feed = xmlDoc.getElementsByTagName('feed');
@@ -160,20 +160,20 @@ document.addEventListener('DOMContentLoaded', function() {
           if(list.childNodes.length > 0){
             feedResultDiv.innerHTML = list.outerHTML;
           } else {
-            document.getElementById('status').innerHTML = 'There are no activity results.';
-            document.getElementById('status').hidden = false;
+            statusElement.innerHTML = 'There are no activity results.';
+            statusElement.hidden = false;
           }
 
           feedResultDiv.hidden = false;
 
         }, function(errorMessage) {
-          document.getElementById('status').innerHTML = 'ERROR. ' + errorMessage;
-          document.getElementById('status').hidden = false;
+          statusElement.innerHTML = 'ERROR. ' + errorMessage;
+          statusElement.hidden = false;
         });
       };
 
     }).catch(function(errorMessage) {
-        document.getElementById('status').innerHTML = 'ERROR. ' + errorMessage;
-        document.getElementById('status').hidden = false;
+        statusElement.innerHTML = 'ERROR. ' + errorMessage;
+        statusElement.hidden = false;
     });
 });

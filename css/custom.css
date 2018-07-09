@@ -1,0 +1,33 @@
+li.query-result {
+  list-style-type: none;
+  border: 1px solid #000;
+  padding: 10px;
+  border-radius: 4px;
+  white-space: normal;
+}
+
+div.query-result-title {
+  font-size: 12px;
+  color: gray;
+}
+
+.main-title {
+  font-weight: bold;
+}
+
+.sub-title {
+  color: gray;
+  font-size: 20px;
+}
+
+.query-label {
+  color: gray;
+  font-weight: normal;
+}
+
+.query-section {
+  border: 1px solid #000;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
