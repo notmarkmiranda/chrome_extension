@@ -79,8 +79,10 @@ function createHTMLElementResult(response){
   var issues = response.issues.map(function(issue){
     return listItemHtml(issue)
   })
-  console.log(response);
-  return `<ul>${issues.join('')}</ul>`
+  return `<h4 class="main-title">Results: ${response.total}</h4>
+          <ul>
+            ${issues.join('')}
+          </ul>`
 }
 
 function listItemHtml(issue) {
