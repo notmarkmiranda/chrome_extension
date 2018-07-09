@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("query").onclick = function(){
         // build query
         buildJQL(function(url) {
-          console.log(url);
           document.getElementById('status').innerHTML = 'Performing JIRA search for ' + url;
           document.getElementById('status').hidden = false;
           // perform the search
