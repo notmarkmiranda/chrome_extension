@@ -4,6 +4,7 @@ li.query-result {
   padding: 10px;
   border-radius: 4px;
   white-space: normal;
+  background-color: honeydew
 }
 
 div.query-result-title {
@@ -16,8 +17,9 @@ div.query-result-title {
 }
 
 .sub-title {
-  color: gray;
+  color: darkslategray;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .query-label {
@@ -30,4 +32,9 @@ div.query-result-title {
   padding: 20px;
   border-radius: 4px;
   margin-bottom: 20px;
+  background-color: cornsilk;
+}
+
+.main-container {
+  margin-top: 5%;
 }
